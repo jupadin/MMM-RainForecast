@@ -31,8 +31,8 @@ Activate the module by adding it to the `config.js` file of the MagicMirror as s
             position: 'top_left',
             config: {
                 header: "Rain Forecast",
-                animationSpeed: 0.6 * 1000,
-                updateInterval: 1 * 60 * 1000,
+                animationSpeed: 600,
+                updateInterval: 60000,
                 location: ["49.41114", "8.71496"],
                 zoom: 8,
                 width: "100",
@@ -52,16 +52,16 @@ The following configuration options can be set and/or changed:
 
 | Option | Type | Default | Description |
 | ---- | ---- | ---- | ---- |
-| `header` | String | "Rain Forecast" | Header which will be displayed |
+| `header` | String | "Rain Forecast" | Header, which will be displayed |
 | `animationSpeed` | String | "600" | Speed how fast new fain forecast data is displayed [milliseconds] |
-| `updateInterval`| String | "60000" | Interval when new rain forecast data is fetched (10 minutes - as described above) [seconds] |
+| `updateInterval`| String | "60000" | Interval when new rain forecast data is fetched (10 minutes - as described above) [milliseconds] |
 | `location` | Array | ["49.40", "8.69"] | Latitude and Longitude which is then displayed |
 | `zoom` | String | "8" | Map zoom value |
 | `height` | String | "100" | Height of the map [px] (if not otherwise given) |
 | `widht` | String | "100%" (Full width of the overall widget width) | Width of the map [px] (if not otherwise given) |
 | `markers` | Array | [] | Set markers in map |
 
-### Markers example
+#### Markers example
 ```
 markers: [{lat: "49.40", long: "8.69", color: "yellow"}]
 ```
