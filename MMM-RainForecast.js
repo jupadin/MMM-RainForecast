@@ -125,7 +125,7 @@ Module.register("MMM-RainForecast", {
 
         const map = L.map(mapCanvas, {
             zoomControl: false, // Do not show zoom buttons
-            attributionControl: false, // Show attribute (Copyright) of map
+            attributionControl: true, // Show attribute (Copyright) of map
         });
 
         // Make map non-interactive
@@ -142,7 +142,7 @@ Module.register("MMM-RainForecast", {
         map.setView(this.config.location, this.config.zoom);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            attribution: 'Leaflet | Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
         const colors = ["black", "grey", "red", "green", "blue", "orange", "violet", "yellow", "gold"];
