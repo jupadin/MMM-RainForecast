@@ -34,11 +34,11 @@ Activate the module by adding it to the `config.js` file of the MagicMirror as s
                 header: "Rain Forecast",
                 animationSpeed: 0.6 * 1000,
                 updateInterval: 1 * 60 * 1000,
-                location: ["49.40", "8.69"],
+                location: ["49.41114", "8.71496"],
                 zoom: 8,
                 width: "100",
                 height: "100",
-                markers: [{lat: "49.40", long: "8.69", color: "yellow"}],
+                markers: [{lat: "49.41114", long: "8.71496", color: "yellow"}],
             }
         }
     ]

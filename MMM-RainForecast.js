@@ -11,11 +11,11 @@ Module.register("MMM-RainForecast", {
         header: "Rain Forecast",
         animationSpeed: 0.6 * 1000, // 600 milliseconds
         updateInterval: 10 * 60 * 1000, // 10 minutes
-        location: ["49.41", "8.71"],
+        location: ["49.41114", "8.71496"],
         zoom: 8,
         width: "100",
         height: "100",
-        markers: [{lat: "49.41", long: "8.71", color: "yellow"}],
+        markers: [{lat: "49.41114", long: "8.71496", color: "yellow"}],
     },
     
     moduleFadeInTime: 2000,
@@ -149,9 +149,8 @@ Module.register("MMM-RainForecast", {
         this.config.markers.forEach(marker => {
             const markerColor = colors.includes(marker.color) ? marker.color : "blue";
             if (markerColor == "blue") {
-                L.marker([marker.lat, marker.long], {}).addTo(map);
+                L.marker([marker.lat, marker.long], {interactive: false, keyboard: false}).addTo(map);
             } else {
-                console.log(markerColor);
                 customMarker = new L.Icon({
                     iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-" + markerColor + ".png",
                     shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
@@ -160,7 +159,7 @@ Module.register("MMM-RainForecast", {
                     popupAnchor: [1, -34],
                     shadowSize: [41, 41]
                 });
-                L.marker([marker.lat, marker.long], {icon: customMarker}).addTo(map);
+                L.marker([marker.lat, marker.long], {icon: customMarker, interactive: false, keyboard: false}).addTo(map);
             }
         });
 
