@@ -128,6 +128,10 @@ Module.register("MMM-RainForecast", {
             attributionControl: false, // Show attribute (Copyright) of map
         });
 
+        // Make map non-interactive
+        map.dragging.disable();
+        map.keyboard.disable();
+
         if (!this.config.location || !Array.isArray(this.config.location) || this.config.location.length != 2) {
             console.error(this.name + ": Provide a map location in the module configuration");
             this.latLongError = true;
