@@ -68,7 +68,7 @@ markers: [{lat: "49.40", long: "8.69", color: "yellow"}]
 ```
 where possible colors are
 ```
-"black", "red", "green", "blue", "orange", "violet", "yellow", "gold"
+"black", "grey", "red", "green", "blue", "orange", "violet", "yellow", "gold"
 ```
 
 ## Further references
