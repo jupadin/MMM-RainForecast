@@ -14,7 +14,6 @@ There is no apiKey or credentials needed.
 The API updates the wheather forecast every 10 minutes.
 
 ### To-Do's
-- Add clock to map view
 - Use leaflets layer groups to group markers
 
 ## Installation

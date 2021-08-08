@@ -93,6 +93,23 @@ Module.register("MMM-RainForecast", {
             subtree: true
         });
 
+        const timeDiv = document.createElement("div");
+        timeDiv.id = "timeDiv";
+        timeDiv.style.visibility = "hidden";
+
+        const clockTime = document.createElement("div");
+        clockTime.id = "clockTime";
+
+        const clockIcon = document.createElement("i");
+        clockIcon.id = "clockIcon";
+        clockIcon.classList.add("fas");
+        clockIcon.classList.add("fa-clock");
+
+        timeDiv.appendChild(clockIcon);
+        timeDiv.appendChild(clockTime);
+
+        this.mapDiv.appendChild(timeDiv);
+        
         wrapper.appendChild(this.mapDiv);
 
         // Return the wrapper to the dom.
@@ -142,7 +159,7 @@ Module.register("MMM-RainForecast", {
         map.setView(this.config.location, this.config.zoom);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'Leaflet | Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
         const colors = ["black", "grey", "red", "green", "blue", "orange", "violet", "yellow", "gold"];
@@ -213,8 +230,16 @@ Module.register("MMM-RainForecast", {
         if (!this.layers.includes[forecastDataObject.time]) {
             this.addLayer(forecastDataObject);
         }
+
+        const timeDiv = document.getElementById("timeDiv");
+        timeDiv.style.visibility = "visible";
+
         const firstForecastDataObjectTimeStamp = forecastDataObject.time;
         this.layers[firstForecastDataObjectTimeStamp].setOpacity(0.65);
+
+        const clockDiv = document.getElementById("clockTime");
+        const date = new Date(firstForecastDataObjectTimeStamp * 1000).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+        clockDiv.innerHTML = date;
     },
 
     stopPlayTimer: function() {
@@ -247,6 +272,9 @@ Module.register("MMM-RainForecast", {
 
         // Set opacity of next frame to given value
         this.layers[nextAnimationTimeStamp].setOpacity(0.65);
+        const clockTime = document.getElementById("clockTime");
+        const date = new Date(nextAnimationTimeStamp * 1000).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+        clockTime.innerHTML = date;
 
         this.animationPosition = nextAnimationPosition;
         this.animationTimer = setTimeout(this.play.bind(this), timeOut);
