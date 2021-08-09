@@ -13,10 +13,6 @@ module.exports = NodeHelper.create({
         this.config = null;
     },
 
-    end: function() {
-        console.log("Ending: " + this.name);
-    },
-
     socketNotificationReceived: function(notification, payload) {
         if (notification == "SET_CONFIG") {
             this.config = payload;

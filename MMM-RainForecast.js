@@ -17,21 +17,21 @@ Module.register("MMM-RainForecast", {
         height: "100",
         markers: [{lat: "49.41114", long: "8.71496", color: "yellow"}],
     },
-    
-    moduleFadeInTime: 2000,
-    loaded: false,
-    fetchedData: null,
-    forecastData: null,
-    animationPosition: 0,
-    map: null,
-    mapDiv: null,
-    latLongError: false,
-    layers: [],
-    animationTimer: null,
 
     // Define start sequence.
     start: function() {
         Log.info("Starting module: " + this.name);
+        this.moduleFadeInTime = 2000;
+        this.loaded = false;
+        this.fetchedData = null;
+        this.forecastData = null;
+        this.animationPosition = 0;
+        this.map = null;
+        this.mapDiv = null;
+        this.latLongError = false;
+        this.layers = [];
+        this.animationTimer = null;
+
         this.initMap();
         this.sendSocketNotification("SET_CONFIG", this.config);
     },
