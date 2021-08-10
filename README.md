@@ -15,6 +15,7 @@ The API updates the wheather forecast every 10 minutes.
 
 ### To-Do's
 - Use leaflets layer groups to group markers
+- Use request module instead of xmlhttpsrequest
 
 ## Installation
 
@@ -31,12 +32,12 @@ Activate the module by adding it to the `config.js` file of the MagicMirror as s
             position: 'top_left',
             config: {
                 header: "Rain Forecast",
-                animationSpeed: 600,
-                updateInterval: 60000,
+                animationSpeed: 0.3 * 1000,
+                updateInterval: 10 * 60 * 1000,
                 location: ["49.41114", "8.71496"],
                 zoom: 8,
-                width: "100",
-                height: "100",
+                limitMapWidth: 0,
+                limitMapHeight: 300,
                 markers: [{lat: "49.41114", long: "8.71496", color: "yellow"}],
             }
         }
@@ -52,14 +53,14 @@ The following configuration options can be set and/or changed:
 
 | Option | Type | Default | Description |
 | ---- | ---- | ---- | ---- |
-| `header` | String | "Rain Forecast" | Header, which will be displayed |
-| `animationSpeed` | String | "600" | Speed how fast new fain forecast data is displayed [milliseconds] |
-| `updateInterval`| String | "60000" | Interval when new rain forecast data is fetched (10 minutes - as described above) [milliseconds] |
-| `location` | Array | ["49.40", "8.69"] | Latitude and Longitude which is then displayed |
-| `zoom` | String | "8" | Map zoom value |
-| `height` | String | "100" | Height of the map [px] (if not otherwise given) |
-| `widht` | String | "100%" (Full width of the overall widget width) | Width of the map [px] (if not otherwise given) |
-| `markers` | Array | [] | Set markers in map |
+| `header` | `string` | "Rain Forecast" | Header, which will be displayed |
+| `animationSpeed` | `int` | `300` | Speed how fast new fain forecast data is displayed [milliseconds] |
+| `updateInterval`| `int` | `60000` | Interval when new rain forecast data is fetched (10 minutes - as described above) [milliseconds] |
+| `location` | `array` | ["49.40", "8.69"] | Latitude and Longitude which is then displayed |
+| `zoom` | `int` | `8` | Map zoom value |
+| `limitMapWidth` | `int` | `0` | Limit the maximum width of the map (`0` implies to use the maximal width defined by the other modules) |
+| `limitMapHeight` | `int` | `300` | Limit the maximum height of the map |
+| `markers` | `array` | [] | Set markers in map |
 
 #### Markers example
 ```

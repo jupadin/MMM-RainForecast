@@ -5,6 +5,12 @@
  * MIT Licensed.
  */
 
+#mapWrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 #timeDiv {
 	position: absolute;
 	top: 10px;

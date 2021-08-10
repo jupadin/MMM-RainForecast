@@ -9,12 +9,12 @@ Module.register("MMM-RainForecast", {
     // Default module config.
     defaults: {
         header: "Rain Forecast",
-        animationSpeed: 0.6 * 1000, // 600 milliseconds
+        animationSpeed: 0.3 * 1000, // 300 milliseconds
         updateInterval: 10 * 60 * 1000, // 10 minutes
         location: ["49.41114", "8.71496"],
         zoom: 8,
-        width: "100",
-        height: "100",
+        limitMapWidth: 0,
+        limitMapHeight: 300,
         markers: [{lat: "49.41114", long: "8.71496", color: "yellow"}],
     },
 
@@ -68,22 +68,33 @@ Module.register("MMM-RainForecast", {
             return wrapper;
         }
 
+        var mapWrapper = document.createElement("div");
+        mapWrapper.id = "mapWrapper";
+
         var map = this.map;
         var mapDiv = this.mapDiv;
 
         // We need to wait until the div is added to the dom, then we need to call the function invalidateSize()
         // in order for the map to behave correctly (resize).
         const observer = new MutationObserver(mutations => {
-
             // Resize map div to be filled with the map to the desired size.
             mapDiv.style.width = "100%";
+            // mapDiv.style.width = "200px";
             mapDiv.style.height = "400px";
 
+            if (this.config.limitMapWidth > 0) {
+                mapDiv.style.width = this.config.limitMapWidth + "px";
+            }
+            if (this.config.limitMapHeight > 0) {
+                mapDiv.style.height = this.config.limitMapHeight + "px";
+            }
+
+            // Invalidate old size to resize map to desired size.
             setTimeout(() => {
                 map.invalidateSize(false);
             }, this.moduleFadeInTime);
 
-            // Disconnect the observer from the wrapper change in size
+            // Disconnect the observer from the wrapper change in size.
             observer.disconnect();
         });
 
@@ -107,10 +118,9 @@ Module.register("MMM-RainForecast", {
 
         timeDiv.appendChild(clockIcon);
         timeDiv.appendChild(clockTime);
-
         this.mapDiv.appendChild(timeDiv);
-        
-        wrapper.appendChild(this.mapDiv);
+        mapWrapper.appendChild(this.mapDiv);     
+        wrapper.appendChild(mapWrapper);
 
         // Return the wrapper to the dom.
         return wrapper;
@@ -184,8 +194,9 @@ Module.register("MMM-RainForecast", {
             }
         });
 
-        mapCanvas.style.width = this.config.width + "px";
-        mapCanvas.style.height = this.config.height + "px";
+        // Set mapCanvas to 300 in order to see the attribution in one line.
+        mapCanvas.style.width = "300px";
+        mapCanvas.style.height = "300px";
         
         this.map = map;
         this.mapDiv = mapCanvas;
