@@ -16,6 +16,7 @@ The API updates the wheather forecast every 10 minutes.
 ### To-Do's
 - Use leaflets layer groups to group markers
 - Use request module instead of xmlhttpsrequest
+- Color time div when map shows forecast
 
 ## Installation
 
@@ -30,10 +31,9 @@ Activate the module by adding it to the `config.js` file of the MagicMirror as s
             module: 'MMM-RainForecast',
             header: 'Rain Forecast',
             position: 'top_left',
-            config: {
-                header: "Rain Forecast",
-                animationSpeed: 0.3 * 1000,
-                updateInterval: 10 * 60 * 1000,
+            config: {,
+                animationSpeed: 300,
+                updateInterval: 600000,
                 location: ["49.41114", "8.71496"],
                 zoom: 8,
                 limitMapWidth: 0,
@@ -55,8 +55,8 @@ The following configuration options can be set and/or changed:
 | ---- | ---- | ---- | ---- |
 | `header` | `string` | `"Rain Forecast"` | Header, which will be displayed |
 | `animationSpeed` | `int` | `300` | Speed how fast new fain forecast data is displayed [milliseconds] |
-| `updateInterval`| `int` | `60000` | Interval when new rain forecast data is fetched (10 minutes - as described above) [milliseconds] |
-| `location` | `array` | ["49.41114", "8.71496"] | Latitude and Longitude which is then displayed |
+| `updateInterval`| `int` | `600000` | Interval when new rain forecast data is fetched (10 minutes - as described above) [milliseconds] |
+| `location` | `array` | `["49.41114", "8.71496"]` | Latitude and Longitude which is then displayed |
 | `zoom` | `int` | `8` | Map zoom value |
 | `limitMapWidth` | `int` | `0` | Limit the maximum width of the map (`0` implies to use the maximal width defined by the other modules) |
 | `limitMapHeight` | `int` | `300` | Limit the maximum height of the map |

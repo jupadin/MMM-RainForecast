@@ -113,8 +113,8 @@ Module.register("MMM-RainForecast", {
 
         const clockIcon = document.createElement("i");
         clockIcon.id = "clockIcon";
-        clockIcon.classList.add("fas");
-        clockIcon.classList.add("fa-clock");
+
+        clockIcon.className = "fas fa-clock";
 
         timeDiv.appendChild(clockIcon);
         timeDiv.appendChild(clockTime);
