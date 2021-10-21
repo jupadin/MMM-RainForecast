@@ -1,7 +1,6 @@
 # MMM-RainForecast
 
 <p style="text-align: center">
-    <a href="https://david-dm.org/jupadin/MMM-RainForecast"><img src="https://david-dm.org/jupadin/MMM-RainForecast.svg" alt ="Dependency Status"></a>
     <a href="https://choosealicense.com/licenses/mit"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
 </p>
 

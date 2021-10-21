@@ -1,7 +1,7 @@
 /* Magic Mirror
  * Module: MMM-RainForecast
  *
- * By Julian Dinter
+ * By jupadin
  * MIT Licensed.
  */
 
@@ -265,10 +265,15 @@ Module.register("MMM-RainForecast", {
         let timeOut = this.config.animationSpeed;
         let nextAnimationPosition = this.animationPosition + 1;
         
+        // Reset animation position if we already showed the last frame
         if (this.animationPosition + 1 === this.forecastData.length) {
             nextAnimationPosition = 0;
         }
 
+        // Add extra delay to timeOut value,
+        // if we show the current rain map
+        // or if we showed the last frame
+        console.log(this.forecastData);
         if (nextAnimationPosition + 1 === this.forecastData.length) {
             timeOut += extraDelayLastFrame;
         }
