@@ -273,7 +273,6 @@ Module.register("MMM-RainForecast", {
         // Add extra delay to timeOut value,
         // if we show the current rain map
         // or if we showed the last frame
-        console.log(this.forecastData);
         if (nextAnimationPosition + 1 === this.forecastData.length) {
             timeOut += extraDelayLastFrame;
         }
