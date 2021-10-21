@@ -16,6 +16,7 @@ The API updates the wheather forecast every 10 minutes.
 - Use leaflets layer groups to group markers
 - Use request module instead of xmlhttpsrequest
 - Color time div when map shows forecast
+- Delay play function when current rain data is displayed
 
 ## Installation
 
