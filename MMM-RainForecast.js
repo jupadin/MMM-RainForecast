@@ -8,14 +8,14 @@
 Module.register("MMM-RainForecast", {
     // Default module config.
     defaults: {
-        header: "Rain Forecast",
+        header: "MMM-Rain Forecast",
         animationSpeed: 0.3 * 1000, // 300 milliseconds
         updateInterval: 10 * 60 * 1000, // 10 minutes
-        location: ["49.41114", "8.71496"],
-        zoom: 8,
+        location: ["47.994899", "7.84988"],
+        zoom: 10,
         limitMapWidth: 0,
         limitMapHeight: 300,
-        markers: [{lat: "49.41114", long: "8.71496", color: "yellow"}],
+        markers: [{lat: "47.994899", long: "7.84988", color: "orange"}],
     },
 
     // Define start sequence.
@@ -48,7 +48,7 @@ Module.register("MMM-RainForecast", {
 
     // Define header.
     getHeader: function() {
-        return this.config.header;
+        return `${this.config.header}`;
     },
 
     // Override dom generator.
@@ -203,7 +203,7 @@ Module.register("MMM-RainForecast", {
     },
 
     updateMap: function() {
-        const map = this.map;
+        // const map = this.map;
 
         // Stop (global) animation timer
         this.stopPlayTimer();
@@ -212,8 +212,12 @@ Module.register("MMM-RainForecast", {
         this.animationPosition = 0;
 
         // Process fetched data
-        const jsonData = JSON.parse(this.fetchedData);
-        this.forecastData = jsonData.radar.past.concat(jsonData.radar.nowcast);
+        const jsonData = this.fetchedData;
+        // const past = jsonData.radar.past;
+        // const nowcast = jsonData.radar.nowcast;
+
+        // Use last two past frames and all nowcast frames
+        this.forecastData = jsonData.radar.past.slice(-2).concat(jsonData.radar.nowcast);
 
         // Remove all (forecast) layers from map and clear forecast layer array
         this.forecastData.forEach(forecast => {

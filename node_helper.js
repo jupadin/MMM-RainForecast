@@ -6,7 +6,7 @@
  */
 
 const NodeHelper = require('node_helper');
-const { XMLHttpRequest } = require('xmlhttprequest');
+const Log = require('../../js/logger.js');
 
 module.exports = NodeHelper.create({
     start: function() {
@@ -22,27 +22,28 @@ module.exports = NodeHelper.create({
     },
 
     getData: function() {
-        console.info(this.name + ": Fetching data from RainForecast-Server...");
-        this.getTimestamps().then(fetchedTimestamps => {
-            this.sendSocketNotification("DATA", fetchedTimestamps)
-        });
+        Log.info(`${this.name}: Fetching data from RainForecast-Server...`);
+
+        const url = "https://api.rainviewer.com/public/weather-maps.json";
+        const fetchOptions = {};
+
+        fetch(url, fetchOptions)
+        .then(response => {
+            if (response.status != 200) {
+                throw `Error fetching forecast data with status code ${response.status}.`;
+            }
+            return response.json();
+        })
+        .then(data => {
+            this.sendSocketNotification("DATA", data);
+            return;
+        })
+        .catch(error => {
+            Log.debug(`${this.name}: ${error}.`)
+            return;
+        })
         
         // Set timeout to continuiusly fetch new data from RainForecast-Server
         setTimeout(this.getData.bind(this), (this.config.updateInterval));
-    },
-
-    getTimestamps: function() {
-        return new Promise((resolve, reject) => {
-            const apiRequest = new XMLHttpRequest();
-            apiRequest.open("GET", "https://api.rainviewer.com/public/weather-maps.json");
-            apiRequest.onload = () => {
-                if (apiRequest.status >= 200 && apiRequest.status <= 300) {
-                    resolve(apiRequest.responseText);
-                } else {
-                    reject(apiRequest.statusText);
-                }
-            };
-            apiRequest.send();
-        });
     }
 })
